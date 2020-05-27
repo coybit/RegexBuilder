@@ -15,37 +15,8 @@ Example: `\d`, `[0-9]`, `\p{Nd}`
 Example: You miss a `)`
 
 
-## Usage
-For example, to validate email address instead of:
-```
-^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
-```
-
-You can write:
-``` swift
-RegexBuilder()
-  .beginning(of: .line)
-  .character(.oneOrMore, of: [
-      .lowerCaseAscii,
-      .upperCaseAscii,
-      .digit,
-      .underscore,
-      .dash,
-      .dot
-  ])
-  .character(.exactly(1), of: [.literal("@")])
-  .character(.oneOrMore, of: [
-      .lowerCaseAscii,
-      .upperCaseAscii,
-      .digit,
-      .underscore,
-      .dash,
-      .dot
-  ])
-  .character(.exactly(1), of: [.dot])
-  .character(.between(2, 5), of: [
-      .lowerCaseAscii,
-      .upperCaseAscii,
-  ])
-  .end(of: .line)
-```
+## Example
+Assume we want to extract two pieces of information (zip code and phone) from a string. 
+The left image is the piece of code we usually end up with. 
+The right image is the code that does the same but it more readable:
+<img src="https://github.com/coybit/RegexBuilder/raw/master/Images/comparison.jpg">
